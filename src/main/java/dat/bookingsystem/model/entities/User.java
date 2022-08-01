@@ -6,24 +6,78 @@ public class User
 {
     private String username;
     private String password;
-    private String role;
+    private boolean isAdmin;
+    private String email;
+    private int phoneNumber;
+    private int bookingPoints;
 
-    public User(String username, String password, String role)
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return isAdmin == user.isAdmin && bookingPoints == user.bookingPoints && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(email, user.email) && Objects.equals(phoneNumber, user.phoneNumber);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(username, password, isAdmin, email, phoneNumber, bookingPoints);
+    }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
+
+    public int getPhoneNumber()
+    {
+        return phoneNumber;
+    }
+
+    public void setPhonerNumber(int phoneNumber)
+    {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public int getBookingPoints()
+    {
+        return bookingPoints;
+    }
+
+    public void setBookingPoints(int bookingPoints)
+    {
+        this.bookingPoints = bookingPoints;
+    }
+
+
+    public User(String username, String password, boolean isAdmin, String email, int phoneNumber, int bookingPoints)
     {
         this.username = username;
         this.password = password;
-        this.role = role;
+        this.isAdmin = isAdmin;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.bookingPoints = bookingPoints;
     }
-
 
 
     @Override
     public String toString()
     {
         return "User{" +
-                "brugerNavn='" + username + '\'' +
-                ", kodeord='" + password + '\'' +
-                ", rolle='" + role + '\'' +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", isAdmin=" + isAdmin +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", bookingPoints=" + bookingPoints +
                 '}';
     }
 
@@ -47,29 +101,14 @@ public class User
         this.password = password;
     }
 
-    public String getRole()
+    public boolean getIsAdmin()
     {
-        return role;
+        return isAdmin;
     }
 
-    public void setRole(String role)
+    public void setIsAdmin(boolean isAdmin)
     {
-        this.role = role;
+        this.isAdmin = isAdmin;
     }
 
-    @Override
-    public boolean equals(Object o)
-    {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return getUsername().equals(user.getUsername()) && getPassword().equals(user.getPassword()) &&
-                getRole().equals(user.getRole());
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return Objects.hash(getUsername(), getPassword(), getRole());
-    }
 }
