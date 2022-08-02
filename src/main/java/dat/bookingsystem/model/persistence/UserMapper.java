@@ -1,9 +1,11 @@
 package dat.bookingsystem.model.persistence;
 
+import dat.bookingsystem.model.entities.Booking;
 import dat.bookingsystem.model.entities.Equipment;
 import dat.bookingsystem.model.entities.User;
 import dat.bookingsystem.model.exceptions.DatabaseException;
 
+import javax.xml.crypto.Data;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -107,6 +109,8 @@ class UserMapper
 
     public List<Equipment> viewEquipment() throws DatabaseException
     {
+        Logger.getLogger("web").log(Level.INFO, "");
+
         List<Equipment> equipmentList = new ArrayList<>();
 
         String sql = "SELECT * FROM item";
@@ -121,7 +125,8 @@ class UserMapper
                     Boolean isAvailable = rs.getBoolean("available");
                     String description = rs.getString("description");
 
-                    equipmentList.add(new Equipment(itemId, name, location, isAvailable, description));
+                    Equipment equipment = new Equipment(itemId, name, location, isAvailable, description);
+                    equipmentList.add(equipment);
                 }
             }
         } catch (SQLException ex) {
@@ -131,7 +136,76 @@ class UserMapper
     }
 
 
+    public int getUserId(String username) throws DatabaseException
+    {
+        Logger.getLogger("web").log(Level.INFO, "");
 
+        int userId = 0;
 
+        String sql = "SELECT user_id FROM user WHERE username = ?";
 
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, username);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()) {
+                    userId = rs.getInt(1);
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Kunne ikke finde brugerId ud fra denne bruger. Opsøg admin.");
+        }
+        return userId;
+    }
+
+    public void bookEquipment(int userId, String itemId, String bookingDate, int numberDays, boolean isRented) throws DatabaseException
+    {
+        Logger.getLogger("web").log(Level.INFO, "");
+
+        String sql = "insert into booking (user_id, item_id, booking_date, booking_days, rented) values (?,?,?,?,?)";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, userId);
+                ps.setString(2, itemId);
+                ps.setString(3, bookingDate);
+                ps.setInt(4, numberDays);
+                ps.setBoolean(5, isRented);
+                ps.executeUpdate();
+
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Kunne ikke gennemføre booking. Forsøg igen, eller opsøg admin.");
+        }
+
+    }
+
+    public List<Booking> viewBooking() throws DatabaseException
+    {
+        Logger.getLogger("web").log(Level.INFO, "");
+
+        List<Booking> bookingList = new ArrayList<>();
+
+        String sql = "SELECT * FROM booking";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int bookingId = rs.getInt("booking_id");
+                    int userId = rs.getInt("user_id");
+                    String itemId = rs.getString("item_id");
+                    String bookingDate = rs.getString("booking_date");
+                    int bookingDays = rs.getInt("booking_days");
+                    Boolean isRented = rs.getBoolean("rented");
+
+                    Booking booking = new Booking (bookingId, userId, itemId, bookingDate, bookingDays, isRented);
+                    bookingList.add(booking);
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Kunne ikke finde booking i databse. Opsøg admin.");
+        }
+        return bookingList;
+    }
 }

@@ -1,5 +1,6 @@
 package dat.bookingsystem.persistence;
 
+import dat.bookingsystem.model.entities.Booking;
 import dat.bookingsystem.model.entities.User;
 import dat.bookingsystem.model.exceptions.DatabaseException;
 import dat.bookingsystem.model.persistence.ConnectionPool;
@@ -85,4 +86,5 @@ class UserMapperTest
         assertEquals(expectedUser, logInUser);
 
     }
+
 }

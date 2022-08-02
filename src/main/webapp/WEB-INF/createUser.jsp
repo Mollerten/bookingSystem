@@ -12,58 +12,36 @@
         Create new user
     </jsp:attribute>
 
-    <form action="fc/createUser" method="post">
-        <input type="hidden" name="command" value="createUser"/>
-        <body>
+    <jsp:body>
+        <form action="fc/createUser" method="post">
+            <input type="hidden" name="command" value="createUser"/>
 
-        <div class="wrapper">
-
-            <div class="form_container">
-                <form name="form">
-                    <div class="heading">
-                        <h2>Opret Bruger</h2>
-                        <b>Opret venligst en bruger <br> for at sende en forespørgsel</b>
-                    </div>
-                    <div class="form_wrap">
-                        <div class="form_item">
-                            <label for="username">Brugernavn</label>
-                            <input type="text" id="username" name="username" required/>
-                        </div>
-                    </div>
-                    <div class="form_wrap">
-                        <div class="form_item">
-                            <label for="email">Email: </label>
-                            <input type="email" id="email" name="email" required/>
-                        </div>
-                    </div>
-
-                    <div class="form_wrap">
-                        <div class="form_item">
-                            <label for="password">Kodeord: </label>
-                            <input type="password" id="password" name="password" required/>
-                        </div>
-                    </div>
-
-                    <div class="form_wrap ">
-                        <div class="form_item">
-                            <label for="phoneNumber">Telefonnummer:</label>
-                            <input type="number" id="phoneNumber" name="phoneNumber" required>
-                        </div>
-                    </div>
-
-                    <div class="form_wrap ">
-                        <div class="form_item">
-                            <label for="bookingPoints">Booking points:</label>
-                            <input type="number" id="bookingPoints" name="bookingPoints" required>
-                        </div>
-                    </div>
-
-                    <div class="btn">
-                        <input type="submit" value="Opret bruger">
-                    </div>
-                </form>
-            </div>
-
-        </body>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username"
+                   value="StudenterStine1999">
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"
+                   value="******">
+            <br>
+            <label for="email">email:</label>
+            <input type="text" id="email" name="email"
+                   value="user@cphbusiness.com">
+            <br>
+            <label for="phoneNumber">Phone number:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber"
+                   value="88888888">
+            <br>
+            <label for="bookingPoints">Booking points:</label>
+            <input type="number" id="bookingPoints" name="bookingPoints"
+                    value="100">
+            <br>
+            <label for="isAdmin">Make user admin:</label>
+            <input type="checkbox" id="isAdmin" name="isAdmin"
+                   value="true">
+            <br>
+            <input type="submit" value="Create user">
+        </form>
+    </jsp:body>
 
 </t:pagetemplate>

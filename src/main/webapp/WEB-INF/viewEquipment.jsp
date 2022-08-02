@@ -8,7 +8,7 @@
         View equipment
     </jsp:attribute>
 
-  <jsp:attribute name="footer">
+    <jsp:attribute name="footer">
         View equipment
     </jsp:attribute>
 
@@ -29,22 +29,22 @@
               <th>Description</th>
               <th>Location</th>
               <th>Available</th>
+              <th></th>
             </tr>
           </thead>
 
           <tbody>
-            <c:forEach var="equipment" items="${requestScope.EquipmentList}">
+            <c:forEach var="equipment" items="${requestScope.equipmentList}">
               <tr>
                 <td>${equipment.itemId}</td>
                 <td>${equipment.name}</td>
                 <td>${equipment.description}</td>
                 <td>${equipment.location}</td>
-                <td>${equipment.isAvailable}</td>
+                <td>Available</td>
+
                 <td><button class="btn btn-primary submit px-3" style="background-color: #000C66"
-                            name="bookEquipment"
-                            value="${equipment.itemId}"
-                            value="${}"
-                            formaction="${pageContext.request.contextPath}/fc/bookEquipment">Book equipment</button></td>
+                            input type="hidden" name="itemId" value="${equipment.itemId}"
+                            formaction="${pageContext.request.contextPath}/fc/bookEquipmentPage?command=bookEquipmentPage">Book equipment</button></td>
               </tr>
             </c:forEach>
           </tbody>

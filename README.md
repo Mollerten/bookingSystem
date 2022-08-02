@@ -1,68 +1,41 @@
-# default-web-applikation
+INTRODUKTION TIL PROJEKTET
 
-## Startkode på 2. semester forår 2022
+Dette er et eksamensprojekt til afslutning af 2. semester af datamatiker uddannelsen på cph-business. Formålet med
+projektet er at udvikle et bookingSystem til udlejning af skolens materialer. I documentation-mappen vil i finde diverse
+screenshots. Blandt andet et EER Diagram der viser første udkast af databasens struktur, samt først udsnit til et
+KanBan board der havde til hensigt at danne overblik for min arbejdsgang.
 
-Dette repository er lavet i forbindelse med 2. semester på
-Datamatikeruddannelsen i Lyngby og på Bornholm forår 2022.
 
-Denne udgave af startkoden er implementeret med et command-pattern og en front-controller.
+LOGBOG
 
-## Java version
-I pom.xml er diverse dependencies valgt, så projektet kan bygges og køres i Java 8. Nyere versioner af 
-Java vil formentlig også fungere, men vi har kun testet med version 8 og 11.
+25/07-2022
+Første dag blev brugt til at få de grundliggende beslutninger på plads. Jeg fik oprettet en mysql database, et
+remote repository på git@github.com:Mollerten/bookingSystem.git, samt første udsnit til et KanBan board som desuden
+også er linket til projektet via github.
 
-## Tomcat
-Brug version 9.
+26/07-2022
+Første udkast til projektets struktur er på plads med klasse som createUser, viewBookings og viewEquipment 80%
+færdige.
 
-## Deployment på Droplet
-T.B.D.
+27/07-2022
+En uventet fejl 500 har gjort at jeg ikke er i stand til at logge ind på sitet og derved har svært ved at overskue
+websitets struktur. Jeg oplever også store udfordringer med at teste mine metoder og jsp-siders opbygning.
+Jeg søger rådgivning hos både underviser og fælles studerende i håbet om at blive klogere.
 
-## Du skal gøre følgende for at få webapplikationen i luften:
+01/08-2022
+Underviser kommer til undsætning! Fejlen er løst og udviklingen forsætter. Projektets hovedfunktioner er på plads
+med enkelte hardcodet punkter grundet tidspres som følger af den tidligere fejl 500. En admin er nu i stand til at
+se samtlige brugere i databasen, oprette nye brugere, se alle bookinger. Desuden kan både almindelige brugere og
+admin se udstyr der er tilgængeligt til udlejning, samt leje dette.
 
-1. Først skal du clone projektet eller downloade en zip-fil med projektet til din arbejdsstation.
-   1. Clone: git clone git@github.com:jonbertelsen/startcode_2sem_2022.git ditprojektnavn
-   2. Slet .git folderen, så du kan gøre projektet til dit eget git-projekt
-      1. > rm -rf .git/
-   3. Opret dit eget git repository:
-      1. > git init
-2. Beslut dig for hvad projektets database skal hedde. Det skal du bruge i næste punkt.
-3. Åbn Workbench og kør en tilpasset (med dit databasenavn i stedet for `startcode`) version af sql-filen `startcode.sql`, som ligger i mappen `resources`. Den opretter en database med en user-tabel og en test-database.
-4. Du skal evt. ændre kodeord til databasen i projektet. Det gøres i filerne: `/persistence/ConnectionPool` i linie 14 og 15. Du skal også ændre i UserMapperTest.
-5. Refactor `startcode` til dit eget projekt alle de steder, hvor det er relevant. Fx her:
-   1. I projektroden
-   2. I pom.xml (`artifactId`og `name` elementerne)
-   3. Den package som ligger lige under `dat`
-6. Til sidst skal du lave en Tomcat konfiguration. Dvs, 
-   1. klik på "Add Configuration ..."
-   2. Klik på "+" og vælg "Tomcat Server Local".
-   3. Klik på "Fix knappen"
-   4. Vælg war-exploded som deployment type
-   5. Nu kan du klikke på den grønne play-knap for at bygge og køre projektet.
-7. Lav et repo på GitHub
+    Endnu en uventet fejl er dukket op, denne gang på github. Mit KanBan board er fastlåst, jeg er ude af stand til at
+    flytte mine issues fra den ene box til den anden.
 
-## Bemærkninger
+02/08-2022
+De sidste forberedelser til aflevering er ved at komme på plads. Jeg mangler desværre nogle mindre funktionaliteter
+såsom at fjerne bookingPoints per dag et materiale er udlånt, men i forhold til arbejdsbyrden ville dette ikke tage
+mere end én time at få i luften.
 
-Startkoden indeholder følgende:
-
-- Strukturering i passende packages for overblik (MVC). Noget af strukturen er også givet af Maven, og kan ikke laves om. F.eks. opdelingen i `/java` og `/webapp`.
-- Javaservlets
-- JSP sider. Læg dem i WEB-INF som kun skal tilgås via en servlet.
-- En super skrabet css-fil til styling
-- Datamapper for user-tabellen, som anvender en connection pool.
-- En UserFacadefor at afkoble UserMapper klassen.
-- Fejlhåndtering med exceptions for databaseoperationer.
-- Integrationstest af datamapperen for User.
-
-Funktionelt kan applikationen:
-
-- Vise en forside med links til undersider, som endnu ikke er lavet (bortset fra "About")
-- Logge en user på. Der findes to brugere i databasen.
-    1. `user` med password: `1234` (rolle: `user`)
-    2. `admin` med password: `1234` (rolle: `admin`)
-- Man kan se på index.jsp hvordan man kan udnytte om en user er logget på eller ej.
-- Hvis man indtaster ugyldige data under indlogning, bliver man sendt til en en fejlside.
-- Logge en bruger af
-- Begyndelsen på en metode til at tjekke om en given bruger har adgang ligger i `services`
 
 ## MVC arkitektur med front-controller
 

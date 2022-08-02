@@ -20,6 +20,9 @@ abstract class Command
         commands.put("viewUsers", new ViewUsers());
         commands.put("viewEquipment", new ViewEquipment());
         commands.put("bookEquipment", new BookEquipment());
+        commands.put("bookEquipmentPage", new BookEquipmentPage());
+        commands.put("createUserPage", new CreateUserPage());
+        commands.put("viewBookings", new ViewBookings());
     }
 
     static Command from( HttpServletRequest request ) {

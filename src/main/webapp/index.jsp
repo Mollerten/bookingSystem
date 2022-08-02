@@ -16,22 +16,31 @@
 
         <p>Startcode for 2nd semester </p>
 
-        <c:if test="${sessionScope.user != null}">
-            <p>You are logged in with the role of "${sessionScope.user.role}".</p>
-        </c:if>
+        <c:if test="${sessionScope.user != null && sessionScope.user.isAdmin == false}">
+            <p>You are logged in as "${sessionScope.user.username}".</p>
 
-     <%--   <c:if test="${sessionScope.user != null && sessionScope.user.isAdmin == true}">
-
-            <a href="${pageContext.request.contextPath}/fc/createUser?command=createUser">Opret ny bruger</a>
-
-            <a href="${pageContext.request.contextPath}/fc/viewUsers?command=viewUsers">Se brugere</a>
+         <%--   <form action="${pageContext.request.contextPath}/fc/viewEquipment" method="post">
+                <input type="hidden" name="command" value="viewEquipment"/>
+                <input type="submit" style="background-color: #000C66" class="btn btn-primary submit px-3"  value="View all equipment"/>
+            </form>--%>
 
             <a href="${pageContext.request.contextPath}/fc/viewEquipment?command=viewEquipment">Se udstyr</a>
+        </c:if>
+
+        <c:if test="${sessionScope.user != null && sessionScope.user.isAdmin == true}">
+
+            <a href="${pageContext.request.contextPath}/fc/createUser?command=createUserPage">Create new user</a>
+            <br><br>
+            <a href="${pageContext.request.contextPath}/fc/viewUsers?command=viewUsers">View all users</a>
+            <br><br>
+            <a href="${pageContext.request.contextPath}/fc/viewEquipment?command=viewEquipment">View equipment</a>
+            <br><br>
+            <a href="${pageContext.request.contextPath}/fc/viewBookings?command=viewBookings">View bookings</a>
 
 
 
         </c:if>
---%>
+
 
 
         <c:if test="${sessionScope.user == null}">
@@ -40,7 +49,7 @@
 
             <br><br>
 
-            If you don't have a login, contact an admin.
+            If you don't have an active account, contact an admin.
         </c:if>
 
     </jsp:body>

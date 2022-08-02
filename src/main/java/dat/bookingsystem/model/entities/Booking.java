@@ -1,18 +1,28 @@
 package dat.bookingsystem.model.entities;
 
-import java.util.Date;
 import java.util.Objects;
 
 public class Booking
 {
+    private int bookingId;
     private int userId;
     private String itemId;
-    private Date bookingDate;
+    private String bookingDate;
     private int bookingDays;
     private boolean isRented;
 
-    public Booking(int userId, String itemId, Date bookingDate, int bookingDays, boolean isRented)
+    public Booking(int userId, String itemId, String bookingDate, int bookingDays, boolean isRented)
     {
+        this.userId = userId;
+        this.itemId = itemId;
+        this.bookingDate = bookingDate;
+        this.bookingDays = bookingDays;
+        this.isRented = isRented;
+    }
+
+    public Booking(int bookingId, int userId, String itemId, String bookingDate, int bookingDays, Boolean isRented)
+    {
+        this.bookingId = bookingId;
         this.userId = userId;
         this.itemId = itemId;
         this.bookingDate = bookingDate;
@@ -40,12 +50,12 @@ public class Booking
         this.itemId = itemId;
     }
 
-    public Date getBookingDate()
+    public String getBookingDate()
     {
         return bookingDate;
     }
 
-    public void setBookingDate(Date bookingDate)
+    public void setBookingDate(String bookingDate)
     {
         this.bookingDate = bookingDate;
     }

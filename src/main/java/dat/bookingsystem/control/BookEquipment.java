@@ -1,9 +1,11 @@
 package dat.bookingsystem.control;
 
 import dat.bookingsystem.model.config.ApplicationStart;
+import dat.bookingsystem.model.entities.Booking;
 import dat.bookingsystem.model.entities.User;
 import dat.bookingsystem.model.exceptions.DatabaseException;
 import dat.bookingsystem.model.persistence.ConnectionPool;
+import dat.bookingsystem.model.persistence.Facade;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,12 +26,14 @@ public class BookEquipment extends Command
     {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-
-      //  Date bookingDate = request.getParameter("bookingDate");
-        int numberDays = Integer.parseInt(request.getParameter("numberDays"));
+        int userId = Facade.getUserId(user.getUsername(), connectionPool);
         String itemId = request.getParameter("itemId");
+        String bookingDate = request.getParameter("bookingDate");
+        int numberDays = Integer.parseInt(request.getParameter("numberDays"));
+        boolean isRented = true;
 
+        Facade.bookEquipment(userId, itemId, bookingDate, numberDays, isRented, connectionPool);
 
-        return itemId;
+        return "index";
     }
 }

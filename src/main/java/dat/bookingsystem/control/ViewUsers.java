@@ -23,7 +23,7 @@ public class ViewUsers extends Command
 
         try
         {
-            Facade.viewUsers(connectionPool);
+            userList = Facade.viewUsers(connectionPool);
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
