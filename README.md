@@ -1,4 +1,9 @@
-INTRODUKTION TIL PROJEKTET
+## LINKS
+
+GITHUB: https://github.com/Mollerten/bookingSystem
+DROPLET: 
+
+## INTRODUKTION TIL PROJEKTET
 
 Dette er et eksamensprojekt til afslutning af 2. semester af datamatiker uddannelsen på cph-business. Formålet med
 projektet er at udvikle et bookingSystem til udlejning af skolens materialer. I documentation-mappen vil i finde diverse
@@ -6,7 +11,7 @@ screenshots. Blandt andet et EER Diagram der viser første udkast af databasens 
 KanBan board der havde til hensigt at danne overblik for min arbejdsgang.
 
 
-LOGBOG
+## LOGBOG
 
 25/07-2022
 Første dag blev brugt til at få de grundliggende beslutninger på plads. Jeg fik oprettet en mysql database, et
@@ -40,3 +45,9 @@ mere end én time at få i luften.
 ## MVC arkitektur med front-controller
 
 ![](documentation/frontcontroller.jpg)
+
+## KONKLUSION
+
+viaUser story 1-3 er 100% færdige. User story 4-7 er 90% færdige.
+Som det står nu kan en studerende ikke holde regnskab med sine bookingpoint.
+Det er muligt at booke udstyr på en dato det allerede er oprettet. Det bliver fixet inden eksamen.
